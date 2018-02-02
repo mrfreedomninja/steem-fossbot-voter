@@ -69,8 +69,11 @@ app.use(expressSession({
 }));
 
 // Start server
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
+//(edited original) app.listen(app.get('port'), function() {
+//  console.log('Node app is running on port', app.get('port'));
+//next part added to replace above
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
   lib.initLib(false, function() {
     loadFiles();
   });
